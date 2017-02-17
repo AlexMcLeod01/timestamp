@@ -2,10 +2,12 @@ var express = require('express');
 var url = require('url');
 var app = express();
 
-app.use('/', function (req, res) {
-  var pathName = url.parse(req.url).pathname;
-  pathName = pathName.substring(1);
-  res.end(inputToOutput(pathName));
+app.use(express.static(__dirname + '/public'));
+app.get('/:query', function (req, res) {
+  var query = req.params.query;
+  //query = query.substring(1);
+  res.json(inputToOutput(query));
+  res.end();
 });
 
 app.listen(process.env.PORT, function () {
@@ -87,7 +89,12 @@ function formatNatLangDate(natLangDateArr) {
 }
 
 function getNatLangDateArr(natLangDateStr) {
-    var arr = natLangDateStr.split("%20");
+    var arr = [];
+    if (natLangDateStr.includes("%20")) {
+        arr = natLangDateStr.split("%20");
+    } else if (natLangDateStr.includes(" ")) {
+        arr = natLangDateStr.split(' ');
+    }
     arr[1] = arr[1].substring(0, arr[1].length - 1);
     return arr;
 }
