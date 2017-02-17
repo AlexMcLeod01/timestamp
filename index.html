@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Timestamp Microservice API Project</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="header">
+                Timestamp Microservice API Project
+            </h1>
+            <blockquote>
+                Instructions:
+                <ul>Pass a string as a parameter, it will check to see if 
+                unix timestamp or natural language date is contained.</ul>
+                <ul>If it does, returns both </ul>
+                <ul>If not, it returns null for both</ul>
+            </blockquote>
+            <h3>Example:</h3>
+            <code>https://timestamp-ms.heroku.com/145929884</code>
+            <code>https://timestamp-ms.heroku.com/December%2031,%202020</code>
+            <h3>Example Output:</h3>
+            <code>
+                {
+                    "unix": 1459298840,
+                    "natural": "March 29, 2016"
+                }
+            </code>
+        </div>
+    </body>
+</html>

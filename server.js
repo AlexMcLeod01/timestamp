@@ -1,8 +1,12 @@
 var express = require('express');
 var url = require('url');
+var path = require('path');
 var app = express();
 
-app.use(express.static(__dirname + '/public'));
+//app.use(express.static(__dirname + '/public'));
+app.get('/', function (req, res) {
+   res.sendFile(path.join(__dirname, '/index.html')); 
+});
 app.get('/:query', function (req, res) {
   var query = req.params.query;
   //query = query.substring(1);
