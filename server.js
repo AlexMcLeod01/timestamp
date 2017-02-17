@@ -28,7 +28,7 @@ function isNatLangDate(natLangDateArr) {
 function isUnixTime(numberStr) {
     var len = numberStr.length;
     var isTime = parseInt(numberStr, 10);
-    if (len == 10 && !Number.isNaN(isTime)) {
+    if (len <= 10 && !Number.isNaN(isTime)) {
         return true;
     } else {
         return false;
