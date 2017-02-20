@@ -1,14 +1,35 @@
-var chai = require("chai");
-var expect = chai.expect;
-var dateParse = require("../app/dateParse.js");
+var expect = require("chai").expect;
+var request = require("request");
 
-describe('dateServer', function() {
-   it("inputToOutput should return input date in other format", function() {
-       expect(dateParse.inputToOutput("1450137600").natural).to.equal(
-           'December 15, 2015');
-        expect(dateParse.inputToOutput("December 15, 2015").unix).to.equal(
-            1450137600);
-        expect(dateParse.inputToOutput("December%2015,%202015").unix).to.equal(
-            1450137600);
-   });
+describe("dateParse API calls", function() {
+    describe("unixtime call", function() {
+        var url = "http://localhost:8080/1450137600";
+        it("returns status 200", function(done) {
+            request(url, function(error, res, body) {
+                expect(res.statusCode).to.equal(200);
+                done();
+            });
+        });
+        it("returns natural date", function(done) {
+            request(url, function(error, res, body) {
+               expect(body.natural).to.equal("December 15, 2015");
+               done();
+            });
+        });
+    });
+    describe("natural language date call", function() {
+        var url = "http://localhost:8080/December%2015,%202015";
+        it("returns status 200", function(done) {
+            request(url, function(error, res, body) {
+                expect(res.statusCode).to.equal(200);
+                done();
+            });
+        });
+        it("returns unixtime", function(done) {
+            request(url, function(error, res, body) {
+               expect(body.natural).to.equal(1450137600);
+               done();
+            });
+        });
+    });
 });

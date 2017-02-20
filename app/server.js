@@ -2,7 +2,7 @@ var express = require('express');
 var url = require('url');
 var path = require('path');
 var app = express();
-var dateParse = require('./app/dateParse.js');
+var dateParse = require('../app/dateParse.js');
 
 //app.use(express.static(__dirname + '/public'));
 app.get('/', function (req, res) {
@@ -10,7 +10,6 @@ app.get('/', function (req, res) {
 });
 app.get('/:query', function (req, res) {
   var query = req.params.query;
-  //query = query.substring(1);
   res.json(dateParse.inputToOutput(query));
   res.end();
 });
