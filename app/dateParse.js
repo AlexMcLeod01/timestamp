@@ -1,30 +1,8 @@
-var express = require('express');
-var url = require('url');
-var path = require('path');
-var app = express();
-
-//app.use(express.static(__dirname + '/public'));
-app.get('/', function (req, res) {
-   res.sendFile(path.join(__dirname, '/index.html')); 
-});
-app.get('/:query', function (req, res) {
-  var query = req.params.query;
-  //query = query.substring(1);
-  res.json(inputToOutput(query));
-  res.end();
-});
-
-app.listen(process.env.PORT, function () {
-  console.log('Example app listening on port 8080!');
-});
-
-
-
 function isNatLangDate(natLangDateArr) {
     var arr = natLangDateArr;
     var m = getMonthNum(arr[0]);
     var d = getDay(arr[1]);
-    if (m === null) { return false; }
+    if (m == null) { return false; }
     if (d > 31) { return false; }
     return true;
 }
@@ -98,6 +76,8 @@ function getNatLangDateArr(natLangDateStr) {
         arr = natLangDateStr.split("%20");
     } else if (natLangDateStr.includes(" ")) {
         arr = natLangDateStr.split(' ');
+    } else {
+        return [null, 36, 9999];
     }
     arr[1] = arr[1].substring(0, arr[1].length - 1);
     return arr;
@@ -113,7 +93,7 @@ function formatOutput(unixtime, natLangDate) {
     return { unix: unixtime, natural: natLangDate };
 }
 
-function inputToOutput(input) {
+exports.inputToOutput = function(input) {
     if (isUnixTime(input)) {
         return formatOutput(parseInt(input, 10), getNatLangDate(input));
     } else {
