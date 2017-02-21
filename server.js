@@ -2,7 +2,7 @@ var express = require('express');
 var url = require('url');
 var path = require('path');
 var app = express();
-var dateParse = require('../app/dateParse.js');
+var dateParse = require('./app/dateParse.js');
 var port = process.env.PORT || 3000;
 
 //app.use(express.static(__dirname + '/public'));
