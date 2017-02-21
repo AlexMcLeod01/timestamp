@@ -3,6 +3,7 @@ var url = require('url');
 var path = require('path');
 var app = express();
 var dateParse = require('../app/dateParse.js');
+var port = process.env.PORT || 3000;
 
 //app.use(express.static(__dirname + '/public'));
 app.get('/', function (req, res) {
@@ -14,6 +15,6 @@ app.get('/:query', function (req, res) {
   res.end();
 });
 
-app.listen(process.env.PORT, function () {
+app.listen(port, function () {
   console.log('Example app listening on port 8080!');
 });
