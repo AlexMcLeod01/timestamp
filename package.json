@@ -6,7 +6,7 @@
   "name": "server",
   "version": "1.0.0",
   "description": "date server",
-  "main": "../app/server.js",
+  "main": "/app/server.js",
   "dependencies": {
     "chai": "^3.5.0",
     "express": "^4.14.1",
