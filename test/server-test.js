@@ -12,7 +12,7 @@ describe("dateParse API calls", function() {
         });
         it("returns natural date", function(done) {
             request(url, function(error, res, body) {
-               expect(body.natural).to.equal("December 15, 2015");
+               expect(body).to.equal('{"unix":1450137600,"natural":"December 15, 2015"}');
                done();
             });
         });
@@ -27,7 +27,7 @@ describe("dateParse API calls", function() {
         });
         it("returns unixtime", function(done) {
             request(url, function(error, res, body) {
-               expect(body.natural).to.equal(1450137600);
+               expect(body).to.equal('{"unix":1450137600,"natural":"December 15, 2015"}');
                done();
             });
         });

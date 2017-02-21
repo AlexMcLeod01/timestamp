@@ -10,7 +10,7 @@ app.get('/', function (req, res) {
 });
 app.get('/:query', function (req, res) {
   var query = req.params.query;
-  res.json(dateParse.inputToOutput(query));
+  res.send(JSON.stringify(dateParse.inputToOutput(query)));
   res.end();
 });
 
